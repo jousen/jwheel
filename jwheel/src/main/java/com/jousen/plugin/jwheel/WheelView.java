@@ -16,6 +16,7 @@ public class WheelView extends RecyclerView {
     private final WheelAdapter wheelAdapter;
     private OnSelectListener onSelectListener;
     private int lastSelect = -1;
+    private int itemHeight = 0;
 
     public WheelView(@NonNull Context context) {
         this(context, null);
@@ -39,7 +40,8 @@ public class WheelView extends RecyclerView {
 
         post(() -> {
             int height = this.getMeasuredHeight();
-            int padding = height / 2;
+            itemHeight = height / this.getChildCount();
+            int padding = (height - itemHeight) / 2;
             WheelView.this.setPadding(0, padding, 0, padding);
         });
     }
@@ -67,8 +69,8 @@ public class WheelView extends RecyclerView {
             smoothScrollToPosition(0);
             return;
         }
-        scrollToPosition(position);
-        smoothScrollToPosition(position + 1);
+        scrollToPosition(position - 1);
+        smoothScrollBy(0, itemHeight);
     }
 
     public void setOnSelectListener(OnSelectListener onSelectListener) {

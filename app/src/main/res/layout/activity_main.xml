@@ -24,4 +24,13 @@
         app:layout_constraintBottom_toBottomOf="@+id/wheel_view"
         app:layout_constraintTop_toTopOf="@+id/wheel_view" />
 
+    <Button
+        android:id="@+id/button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/purple_200"
+        android:text="test"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
