@@ -53,18 +53,22 @@ public class WheelView extends RecyclerView {
     }
 
     public void setData(List<String> items) {
-        setData(items, 0);
-    }
-
-    public void setData(List<String> items, int defaultPosition) {
         wheelAdapter.setData(items);
         if (items.size() > 0) {
-            smoothScrollToPosition(defaultPosition);
+            smoothScrollToPosition(0);
         }
     }
 
     public void setSelectItem(int position) {
-        smoothScrollToPosition(position);
+        if (position < 0) {
+            return;
+        }
+        if (position == 0) {
+            smoothScrollToPosition(0);
+            return;
+        }
+        scrollToPosition(position);
+        smoothScrollToPosition(position + 1);
     }
 
     public void setOnSelectListener(OnSelectListener onSelectListener) {
