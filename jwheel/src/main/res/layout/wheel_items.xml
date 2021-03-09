@@ -9,5 +9,6 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:padding="10dp"
-        android:singleLine="true" />
+        android:singleLine="true"
+        android:textStyle="bold" />
 </FrameLayout>

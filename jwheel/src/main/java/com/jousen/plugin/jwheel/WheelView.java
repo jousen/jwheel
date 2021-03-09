@@ -59,6 +59,10 @@ public class WheelView extends RecyclerView {
         }
     }
 
+    public void setSelectItem(int position) {
+        wheelAdapter.selectPosition(position);
+    }
+
     public void setOnSelectListener(OnSelectListener onSelectListener) {
         this.onSelectListener = onSelectListener;
     }

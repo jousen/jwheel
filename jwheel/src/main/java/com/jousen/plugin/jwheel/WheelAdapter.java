@@ -16,7 +16,7 @@ public class WheelAdapter extends RecyclerView.Adapter<WheelAdapter.VH> {
     private int selectPosition = -1;
     private int selectTextSize = 16;
     private int selectTextColor = Color.BLACK;
-    private int unSelectTextSize = 14;
+    private int unSelectTextSize = 16;
     private int unSelectTextColor = Color.GRAY;
 
     public void setSelectTextStyle(int selectTextSize, int selectTextColor) {
