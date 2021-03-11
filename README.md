@@ -38,7 +38,7 @@ allprojects {
 
 ```
 dependencies {
-    implementation 'com.github.jousen:jwheel:2.6'
+    implementation 'com.github.jousen:jwheel:2.8'
 }
 ```
 
@@ -90,7 +90,7 @@ dependencies {
         //设置内容
         wheelView.setData(list);
         //若默认选中2021年，则position应该为 2021 - 2000（数组首位）
-        findViewById(R.id.button).setOnClickListener(v -> wheelView.setSelectItem(2021 - 2000));
+        findViewById(R.id.button).setOnClickListener(v -> wheelView.selectPosition(2021 - 2000));
         //监听选中内容
         wheelView.setOnSelectListener((position, data) -> Log.e("Select Position:", position + "|" + data));
 ```

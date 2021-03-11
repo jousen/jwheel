@@ -76,11 +76,10 @@ public class WheelView extends RecyclerView {
 
     public void setData(List<String> items, int initPosition) {
         wheelAdapter.setData(items);
-        int size = items.size();
         scrollToItem(initPosition, items.size());
     }
 
-    public void setSelectItem(int position) {
+    public void selectPosition(int position) {
         if (position < 0) {
             return;
         }
@@ -116,6 +115,7 @@ public class WheelView extends RecyclerView {
         //数组长度小于5，直接平滑滚动过去
         if (itemSize < 5 || scrollPosition == 0) {
             smoothScrollToPosition(scrollPosition);
+            return;
         }
         //默认先直接到前一位，再平滑过去
         scrollToPosition(scrollPosition - 1);
