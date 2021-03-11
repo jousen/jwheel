@@ -38,7 +38,7 @@ allprojects {
 
 ```
 dependencies {
-    implementation 'com.github.jousen:jwheel:2.3'
+    implementation 'com.github.jousen:jwheel:2.5'
 }
 ```
 

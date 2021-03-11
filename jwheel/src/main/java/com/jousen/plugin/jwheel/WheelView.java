@@ -47,13 +47,16 @@ public class WheelView extends RecyclerView {
                 getViewTreeObserver().removeOnGlobalLayoutListener(this);
                 int height = getMeasuredHeight();
                 itemCount = getChildCount();
+                //防止除数为0
+                if (itemCount <= 0) {
+                    return;
+                }
                 itemHeight = height / itemCount;
                 int padding = (height - itemHeight) / 2;
                 WheelView.this.setPadding(0, padding, 0, padding);
                 //若有初始选择的item，则滑动过去
-                if (initPosition > 0 && initPosition <= itemCount) {
-                    scrollToPosition(initPosition - 1);
-                    smoothScrollBy(0, itemHeight);
+                if (initPosition > 0) {
+                    scrollToItem(initPosition, itemCount);
                 }
             }
         });
@@ -74,15 +77,7 @@ public class WheelView extends RecyclerView {
     public void setData(List<String> items, int initPosition) {
         wheelAdapter.setData(items);
         int size = items.size();
-        if (size > 0 && initPosition <= size) {
-            //初始设定位置小于3，直接平滑滚动过去
-            if (initPosition < 3) {
-                smoothScrollToPosition(initPosition);
-                return;
-            }
-            scrollToPosition(initPosition - 1);
-            smoothScrollToPosition(initPosition);
-        }
+        scrollToItem(initPosition, items.size());
     }
 
     public void setSelectItem(int position) {
@@ -103,6 +98,28 @@ public class WheelView extends RecyclerView {
 
     public void setOnSelectListener(OnSelectListener onSelectListener) {
         this.onSelectListener = onSelectListener;
+    }
+
+    private void scrollToItem(int initPosition, int itemSize) {
+        if (itemSize < 0) {
+            return;
+        }
+        //若初始设置位置超过item数组index，则滑动到最后一位
+        int scrollPosition = initPosition;
+        if (initPosition >= itemSize) {
+            scrollPosition = itemSize - 1;
+        }
+        //initPosition为负值和数组为空的情况判断
+        if (scrollPosition < 0) {
+            scrollPosition = 0;
+        }
+        //数组长度小于5，直接平滑滚动过去
+        if (itemSize < 5 || scrollPosition == 0) {
+            smoothScrollToPosition(scrollPosition);
+        }
+        //默认先直接到前一位，再平滑过去
+        scrollToPosition(scrollPosition - 1);
+        smoothScrollToPosition(scrollPosition);
     }
 
     @Override
