@@ -22,6 +22,8 @@ public class WheelActivity extends AppCompatActivity {
         year.setTextColor(Color.BLUE, Color.GRAY);
         //设置内容
         year.setData(getYearData());
+        //开启声音
+        year.enableSound();
         //默认选中项(要选中的内容 - 起始内容 = position)
         year.initPosition(2021 - 1000);
         //监听选中内容

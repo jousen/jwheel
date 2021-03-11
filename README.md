@@ -13,7 +13,7 @@
 
 
 
-<img src="https://github.com/jousen/jwheel/blob/main/Screenshot_1615261871.png" style="zoom:25%;" />
+<img src="https://github.com/jousen/jwheel/blob/main/Screenshot_1615261871.png" style="width:50%;height:auto;" />
 
 
 
@@ -38,7 +38,7 @@ allprojects {
 
 ```
 dependencies {
-    implementation 'com.github.jousen:jwheel:3.0'
+    implementation 'com.github.jousen:jwheel:3.1'
 }
 ```
 
