@@ -14,19 +14,17 @@ import java.util.List;
 public class WheelAdapter extends RecyclerView.Adapter<WheelAdapter.VH> {
     private List<String> items;
     private int selectPosition = -1;
-    private int selectTextSize = 16;
-    private int selectTextColor = Color.BLACK;
-    private int unSelectTextSize = 16;
-    private int unSelectTextColor = Color.GRAY;
+    private float textSize = 16;
+    private int selectColor = Color.BLACK;
+    private int unSelectColor = Color.GRAY;
 
-    public void setSelectTextStyle(int selectTextSize, int selectTextColor) {
-        this.selectTextSize = selectTextSize;
-        this.selectTextColor = selectTextColor;
+    public void setTextSize(float textSize) {
+        this.textSize = textSize;
     }
 
-    public void setUnSelectTextStyle(int unSelectTextSize, int unSelectTextColor) {
-        this.unSelectTextSize = unSelectTextSize;
-        this.unSelectTextColor = unSelectTextColor;
+    public void setTextColor(int selectColor, int unSelectColor) {
+        this.selectColor = selectColor;
+        this.unSelectColor = unSelectColor;
     }
 
     public void setData(List<String> items) {
@@ -44,7 +42,7 @@ public class WheelAdapter extends RecyclerView.Adapter<WheelAdapter.VH> {
     @Override
     public VH onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.wheel_items, parent, false);
-        return new VH(v);
+        return new VH(v, textSize);
     }
 
     @Override
@@ -55,13 +53,7 @@ public class WheelAdapter extends RecyclerView.Adapter<WheelAdapter.VH> {
     @Override
     public void onBindViewHolder(@NonNull VH holder, int position) {
         holder.text.setText(items.get(position));
-        if (position == selectPosition) {
-            holder.text.setTextSize(selectTextSize);
-            holder.text.setTextColor(selectTextColor);
-        } else {
-            holder.text.setTextSize(unSelectTextSize);
-            holder.text.setTextColor(unSelectTextColor);
-        }
+        holder.text.setTextColor((position == selectPosition ? selectColor : unSelectColor));
     }
 
     @Override
@@ -72,9 +64,10 @@ public class WheelAdapter extends RecyclerView.Adapter<WheelAdapter.VH> {
     public static class VH extends RecyclerView.ViewHolder {
         public final TextView text;
 
-        public VH(@NonNull View itemView) {
+        public VH(@NonNull View itemView, float textSize) {
             super(itemView);
             text = itemView.findViewById(R.id.text);
+            text.setTextSize(textSize);
         }
     }
 }

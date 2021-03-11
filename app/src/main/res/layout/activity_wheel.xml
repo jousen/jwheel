@@ -33,7 +33,7 @@
         android:layout_width="match_parent"
         android:layout_height="30dp"
         android:layout_margin="10dp"
-        android:background="#99FFFFFF"
+        android:background="#E6FFFFFF"
         app:layout_constraintBottom_toBottomOf="@+id/wheel_view1"
         app:layout_constraintTop_toTopOf="@+id/wheel_view1" />
 </androidx.constraintlayout.widget.ConstraintLayout>

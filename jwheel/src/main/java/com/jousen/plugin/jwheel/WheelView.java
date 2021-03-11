@@ -17,7 +17,7 @@ public class WheelView extends RecyclerView {
     private final WheelAdapter wheelAdapter;
     private OnSelectListener onSelectListener;
     private int initPosition = -1;//初始位置
-    private int itemCount = 0;//控件数量
+    private int itemSize = 0;//控件数量
     private int itemHeight = 0;//控件高度
     private int lastSelect = -1;//上次选择的item，相同item不再回调
 
@@ -46,40 +46,37 @@ public class WheelView extends RecyclerView {
             public void onGlobalLayout() {
                 getViewTreeObserver().removeOnGlobalLayoutListener(this);
                 int height = getMeasuredHeight();
-                itemCount = getChildCount();
+                //可见item数量
+                int childCount = getChildCount();
                 //防止除数为0
-                if (itemCount <= 0) {
+                if (childCount <= 0) {
                     return;
                 }
-                itemHeight = height / itemCount;
+                itemHeight = height / childCount;
                 int padding = (height - itemHeight) / 2;
                 WheelView.this.setPadding(0, padding, 0, padding);
                 //若有初始选择的item，则滑动过去
                 if (initPosition > 0) {
-                    scrollToItem(initPosition, itemCount);
+                    scrollToItem(initPosition);
                 }
             }
         });
     }
 
-    public void setSelectTextStyle(int selectTextSize, int selectTextColor) {
-        wheelAdapter.setSelectTextStyle(selectTextSize, selectTextColor);
+    public void setTextSize(float textSize) {
+        wheelAdapter.setTextSize(textSize);
     }
 
-    public void setUnSelectTextStyle(int unSelectTextSize, int unSelectTextColor) {
-        wheelAdapter.setUnSelectTextStyle(unSelectTextSize, unSelectTextColor);
+    public void setTextColor(int selectColor, int unSelectColor) {
+        wheelAdapter.setTextColor(selectColor, unSelectColor);
     }
 
     public void setData(List<String> items) {
-        setData(items, 0);
-    }
-
-    public void setData(List<String> items, int initPosition) {
+        this.itemSize = items.size();
         wheelAdapter.setData(items);
-        scrollToItem(initPosition, items.size());
     }
 
-    public void selectPosition(int position) {
+    public void initPosition(int position) {
         if (position < 0) {
             return;
         }
@@ -91,15 +88,14 @@ public class WheelView extends RecyclerView {
             initPosition = position;
             return;
         }
-        scrollToPosition(position - 1);
-        smoothScrollBy(0, itemHeight);
+        scrollToItem(position);
     }
 
     public void setOnSelectListener(OnSelectListener onSelectListener) {
         this.onSelectListener = onSelectListener;
     }
 
-    private void scrollToItem(int initPosition, int itemSize) {
+    private void scrollToItem(int initPosition) {
         if (itemSize < 0) {
             return;
         }
@@ -118,8 +114,8 @@ public class WheelView extends RecyclerView {
             return;
         }
         //默认先直接到前一位，再平滑过去
-        scrollToPosition(scrollPosition - 1);
-        smoothScrollToPosition(scrollPosition);
+        scrollToPosition(scrollPosition);
+        smoothScrollBy(0, itemHeight / 4);
     }
 
     @Override
@@ -140,8 +136,8 @@ public class WheelView extends RecyclerView {
                 return;
             }
             lastSelect = selectPosition;
-            String positionData = wheelAdapter.selectPosition(selectPosition);
-            onSelectListener.onSelect(selectPosition, positionData);
+            String selectText = wheelAdapter.selectPosition(selectPosition);
+            onSelectListener.onSelect(selectPosition, selectText);
         }
     }
 }

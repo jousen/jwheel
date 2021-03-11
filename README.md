@@ -38,13 +38,15 @@ allprojects {
 
 ```
 dependencies {
-    implementation 'com.github.jousen:jwheel:2.9'
+    implementation 'com.github.jousen:jwheel:3.0'
 }
 ```
 
 ## 3、Usage 使用
 
 ##### 1、Use in xml 在xml文件定义如下
+
+中间项若需装饰，可使用ConstraintLayout布局将一个view设置为WheelView的中间
 
 ```
 <?xml version="1.0" encoding="utf-8"?>
@@ -65,7 +67,7 @@ dependencies {
         
     <View
         android:layout_width="match_parent"
-        android:layout_height="30dp"
+        android:layout_height="40dp"
         android:layout_margin="10dp"
         android:background="#99FFFFFF"
         app:layout_constraintBottom_toBottomOf="@+id/wheel_view"
@@ -78,21 +80,16 @@ dependencies {
 ##### 2、Init in Activity 在代码里初始化
 
 ```
-		List<String> list = new ArrayList<>();
-        for (int i = 2000; i < 2030; i++) {
-            list.add(i + "年");
-        }
-        WheelView wheelView = findViewById(R.id.wheel_view);
+		WheelView year = findViewById(R.id.wheel_view1);
         //设置选中文本的样式
-        wheelView.setSelectTextStyle(18, Color.BLUE);
-        //设置非选中文本的样式
-        wheelView.setUnSelectTextStyle(16, Color.GRAY);
+        year.setTextSize(16);
+        year.setTextColor(Color.BLUE, Color.GRAY);
         //设置内容
-        wheelView.setData(list);
-        //若默认选中2021年，则position应该为 2021 - 2000（数组首位）
-        findViewById(R.id.button).setOnClickListener(v -> wheelView.selectPosition(2021 - 2000));
+        year.setData(getYearData());
+        //默认选中项(要选中的内容 - 起始内容 = position)
+        year.initPosition(2021 - 1000);
         //监听选中内容
-        wheelView.setOnSelectListener((position, data) -> Log.e("Select Position:", position + "|" + data));
+        year.setOnSelectListener((position, data) -> Log.e("Select Position:", position + "|" + data));
 ```
 
 
