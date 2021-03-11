@@ -22,13 +22,11 @@ public class MainActivity extends AppCompatActivity {
         //设置非选中文本的样式
         wheelView.setUnSelectTextStyle(16, Color.GRAY);
         //设置内容
-        wheelView.setData(getMonthData());
+        wheelView.setData(getMonthData(), 3);
         //监听选中内容
         wheelView.setOnSelectListener((position, data) -> Log.e("Select Position:", position + "|" + data));
-        //若默认选中8点，则应该为 8 - 1（数组首位）
-        findViewById(R.id.button).setOnClickListener(v -> {
-            wheelView.setSelectItem(8-1);
-        });
+        //若默认选中8点，则position应该为 8 - 1（数组首位）
+        findViewById(R.id.button).setOnClickListener(v -> wheelView.setSelectItem(8 - 1));
     }
 
     public List<String> getMonthData() {

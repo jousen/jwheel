@@ -34,9 +34,11 @@ allprojects {
 
 2、Add dependencies 
 
+[![](https://jitpack.io/v/jousen/jwheel.svg)](https://jitpack.io/#jousen/jwheel)
+
 ```
 dependencies {
-    implementation 'com.github.jousen:jwheel:2.1'
+    implementation 'com.github.jousen:jwheel:2.3'
 }
 ```
 
@@ -87,6 +89,8 @@ dependencies {
         wheelView.setUnSelectTextStyle(16, Color.GRAY);
         //设置内容
         wheelView.setData(list);
+        //若默认选中2021年，则position应该为 2021 - 2000（数组首位）
+        findViewById(R.id.button).setOnClickListener(v -> wheelView.setSelectItem(2021 - 2000));
         //监听选中内容
         wheelView.setOnSelectListener((position, data) -> Log.e("Select Position:", position + "|" + data));
 ```

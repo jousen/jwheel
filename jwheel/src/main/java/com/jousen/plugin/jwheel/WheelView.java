@@ -2,6 +2,7 @@ package com.jousen.plugin.jwheel;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.view.ViewTreeObserver;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -15,8 +16,10 @@ public class WheelView extends RecyclerView {
     private final LinearLayoutManager linearLayoutManager;
     private final WheelAdapter wheelAdapter;
     private OnSelectListener onSelectListener;
-    private int lastSelect = -1;
-    private int itemHeight = 0;
+    private int initPosition = -1;//初始位置
+    private int itemCount = 0;//控件数量
+    private int itemHeight = 0;//控件高度
+    private int lastSelect = -1;//上次选择的item，相同item不再回调
 
     public WheelView(@NonNull Context context) {
         this(context, null);
@@ -38,11 +41,21 @@ public class WheelView extends RecyclerView {
         setHasFixedSize(true);
         setLayoutManager(linearLayoutManager);
 
-        post(() -> {
-            int height = this.getMeasuredHeight();
-            itemHeight = height / this.getChildCount();
-            int padding = (height - itemHeight) / 2;
-            WheelView.this.setPadding(0, padding, 0, padding);
+        getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+            @Override
+            public void onGlobalLayout() {
+                getViewTreeObserver().removeOnGlobalLayoutListener(this);
+                int height = getMeasuredHeight();
+                itemCount = getChildCount();
+                itemHeight = height / itemCount;
+                int padding = (height - itemHeight) / 2;
+                WheelView.this.setPadding(0, padding, 0, padding);
+                //若有初始选择的item，则滑动过去
+                if (initPosition > 0 && initPosition <= itemCount) {
+                    scrollToPosition(initPosition - 1);
+                    smoothScrollBy(0, itemHeight);
+                }
+            }
         });
     }
 
@@ -55,9 +68,20 @@ public class WheelView extends RecyclerView {
     }
 
     public void setData(List<String> items) {
+        setData(items, 0);
+    }
+
+    public void setData(List<String> items, int initPosition) {
         wheelAdapter.setData(items);
-        if (items.size() > 0) {
-            smoothScrollToPosition(0);
+        int size = items.size();
+        if (size > 0 && initPosition <= size) {
+            //初始设定位置小于3，直接平滑滚动过去
+            if (initPosition < 3) {
+                smoothScrollToPosition(initPosition);
+                return;
+            }
+            scrollToPosition(initPosition - 1);
+            smoothScrollToPosition(initPosition);
         }
     }
 
@@ -67,6 +91,10 @@ public class WheelView extends RecyclerView {
         }
         if (position == 0) {
             smoothScrollToPosition(0);
+            return;
+        }
+        if (itemHeight <= 0) {
+            initPosition = position;
             return;
         }
         scrollToPosition(position - 1);
