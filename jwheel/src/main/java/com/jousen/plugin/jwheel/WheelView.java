@@ -90,6 +90,9 @@ public class WheelView extends RecyclerView {
     }
 
     public void initPosition(int position) {
+        if (lastSelect == -1) {
+            lastSelect = position;
+        }
         if (position < 0) {
             return;
         }

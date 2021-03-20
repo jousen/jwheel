@@ -34,6 +34,10 @@ public class WheelAdapter extends RecyclerView.Adapter<WheelAdapter.VH> {
 
     public void setData(List<String> items) {
         this.items = items;
+        int size = items.size();
+        if (selectPosition >= size) {
+            selectPosition = size - 1;
+        }
         notifyDataSetChanged();
     }
 
