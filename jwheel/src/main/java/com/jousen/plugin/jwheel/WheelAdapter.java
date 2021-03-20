@@ -17,6 +17,7 @@ public class WheelAdapter extends RecyclerView.Adapter<WheelAdapter.VH> {
     private float textSize = 16;
     private int selectColor = Color.BLACK;
     private int unSelectColor = Color.GRAY;
+    private String selectSuffix = "";
 
     public void setTextSize(float textSize) {
         this.textSize = textSize;
@@ -25,6 +26,10 @@ public class WheelAdapter extends RecyclerView.Adapter<WheelAdapter.VH> {
     public void setTextColor(int selectColor, int unSelectColor) {
         this.selectColor = selectColor;
         this.unSelectColor = unSelectColor;
+    }
+
+    public void setSelectSuffix(String selectSuffix) {
+        this.selectSuffix = selectSuffix;
     }
 
     public void setData(List<String> items) {
@@ -52,8 +57,14 @@ public class WheelAdapter extends RecyclerView.Adapter<WheelAdapter.VH> {
 
     @Override
     public void onBindViewHolder(@NonNull VH holder, int position) {
-        holder.text.setText(items.get(position));
-        holder.text.setTextColor((position == selectPosition ? selectColor : unSelectColor));
+        if (position == selectPosition) {
+            String text = items.get(position) + selectSuffix;
+            holder.text.setText(text);
+            holder.text.setTextColor(selectColor);
+        } else {
+            holder.text.setText(items.get(position));
+            holder.text.setTextColor(unSelectColor);
+        }
     }
 
     @Override

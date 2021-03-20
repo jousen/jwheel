@@ -22,6 +22,8 @@ public class WheelActivity extends AppCompatActivity {
         year.setTextColor(Color.BLUE, Color.GRAY);
         //设置内容
         year.setData(getYearData());
+        //设置选择文字后缀
+        year.setSelectSuffix("年");
         //开启声音
         year.enableSound();
         //默认选中项(要选中的内容 - 起始内容 = position)
@@ -44,7 +46,7 @@ public class WheelActivity extends AppCompatActivity {
     public List<String> getYearData() {
         List<String> data = new ArrayList<>();
         for (int i2 = 1000; i2 <= 3000; i2++) {
-            data.add(i2 + "年");
+            data.add(String.valueOf(i2));
         }
         return data;
     }

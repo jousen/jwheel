@@ -13,7 +13,7 @@
 
 
 
-<img src="https://github.com/jousen/jwheel/blob/main/Screenshot_1615261871.png" style="width:50%;height:auto;" />
+<img src="https://github.com/jousen/jwheel/blob/main/1.png" />
 
 
 
@@ -38,7 +38,7 @@ allprojects {
 
 ```
 dependencies {
-    implementation 'com.github.jousen:jwheel:3.1'
+    implementation 'com.github.jousen:jwheel:3.2'
 }
 ```
 
@@ -86,6 +86,10 @@ dependencies {
         year.setTextColor(Color.BLUE, Color.GRAY);
         //设置内容
         year.setData(getYearData());
+        //设置选择文字后缀
+        year.setSelectSuffix("年");
+        //开启声音
+        year.enableSound();
         //默认选中项(要选中的内容 - 起始内容 = position)
         year.initPosition(2021 - 1000);
         //监听选中内容

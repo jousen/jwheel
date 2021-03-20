@@ -76,6 +76,10 @@ public class WheelView extends RecyclerView {
         wheelAdapter.setTextColor(selectColor, unSelectColor);
     }
 
+    public void setSelectSuffix(String selectSuffix) {
+        wheelAdapter.setSelectSuffix(selectSuffix);
+    }
+
     public void setData(List<String> items) {
         this.itemSize = items.size();
         wheelAdapter.setData(items);
