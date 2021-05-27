@@ -24,8 +24,6 @@ public class WheelActivity extends AppCompatActivity {
         year.setData(getYearData());
         //设置选择文字后缀
         year.setSelectSuffix("年");
-        //开启声音
-        year.enableSound();
         //默认选中项(要选中的内容 - 起始内容 = position)
         year.initPosition(2021 - 1000);
         //监听选中内容

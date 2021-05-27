@@ -10,7 +10,7 @@
     <com.jousen.plugin.jwheel.WheelView
         android:id="@+id/wheel_view1"
         android:layout_width="0dp"
-        android:layout_height="match_parent"
+        android:layout_height="300dp"
         android:clipToPadding="false"
         android:elevation="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -21,7 +21,7 @@
     <com.jousen.plugin.jwheel.WheelView
         android:id="@+id/wheel_view2"
         android:layout_width="0dp"
-        android:layout_height="match_parent"
+        android:layout_height="300dp"
         android:clipToPadding="false"
         android:elevation="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -31,9 +31,9 @@
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="30dp"
+        android:layout_height="35dp"
         android:layout_margin="10dp"
-        android:background="#E6FFFFFF"
+        android:background="#F2FFFFFF"
         app:layout_constraintBottom_toBottomOf="@+id/wheel_view1"
         app:layout_constraintTop_toTopOf="@+id/wheel_view1" />
 </androidx.constraintlayout.widget.ConstraintLayout>

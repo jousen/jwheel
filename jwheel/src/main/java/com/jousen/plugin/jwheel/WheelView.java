@@ -1,7 +1,6 @@
 package com.jousen.plugin.jwheel;
 
 import android.content.Context;
-import android.media.SoundPool;
 import android.util.AttributeSet;
 import android.view.ViewTreeObserver;
 
@@ -21,10 +20,6 @@ public class WheelView extends RecyclerView {
     private int itemSize = 0;//控件数量
     private int itemHeight = 0;//控件高度
     private int lastSelect = -1;//上次选择的item，相同item不再回调
-
-    private SoundPool soundPool;
-    private boolean enableSound;//是否开启声音
-    private int soundId;
 
     public WheelView(@NonNull Context context) {
         this(context, null);
@@ -58,7 +53,7 @@ public class WheelView extends RecyclerView {
                     return;
                 }
                 itemHeight = height / childCount;
-                int padding = (height - itemHeight) / 2;
+                int padding = height / 2;
                 WheelView.this.setPadding(0, padding, 0, padding);
                 //若有初始选择的item，则滑动过去
                 if (initPosition > 0) {
@@ -85,8 +80,8 @@ public class WheelView extends RecyclerView {
         wheelAdapter.setData(items);
     }
 
+    @Deprecated
     public void enableSound() {
-        this.enableSound = true;
     }
 
     public void initPosition(int position) {
@@ -151,14 +146,6 @@ public class WheelView extends RecyclerView {
             lastSelect = selectPosition;
             String selectText = wheelAdapter.selectPosition(selectPosition);
             onSelectListener.onSelect(selectPosition, selectText);
-            //检查是否播放声音
-            if (enableSound) {
-                if (soundPool == null) {
-                    soundPool = new SoundPool.Builder().setMaxStreams(1).build();
-                    soundId = soundPool.load(getContext(), R.raw.wheel_select, 1);
-                }
-                soundPool.play(soundId, 1, 1, 0, 0, 1);
-            }
         }
     }
 }
