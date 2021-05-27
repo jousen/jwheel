@@ -26,6 +26,17 @@
         android:elevation="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toRightOf="@+id/wheel_view1"
+        app:layout_constraintRight_toLeftOf="@+id/wheel_view3"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.jousen.plugin.jwheel.WheelView
+        android:id="@+id/wheel_view3"
+        android:layout_width="0dp"
+        android:layout_height="300dp"
+        android:clipToPadding="false"
+        android:elevation="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toRightOf="@+id/wheel_view2"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

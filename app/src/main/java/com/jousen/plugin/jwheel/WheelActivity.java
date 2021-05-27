@@ -7,16 +7,22 @@ import android.util.Log;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 public class WheelActivity extends AppCompatActivity {
+    WheelView year;
+    WheelView month;
+    WheelView day;
+    int choiceYear = 2021;
+    int choiceMonth = 3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_wheel);
 
-        WheelView year = findViewById(R.id.wheel_view1);
+        year = findViewById(R.id.wheel_view1);
         //设置选中文本的样式
         year.setTextSize(16);
         year.setTextColor(Color.BLUE, Color.GRAY);
@@ -25,20 +31,38 @@ public class WheelActivity extends AppCompatActivity {
         //设置选择文字后缀
         year.setSelectSuffix("年");
         //默认选中项(要选中的内容 - 起始内容 = position)
-        year.initPosition(2021 - 1000);
+        year.initPosition(choiceYear - 1000);
         //监听选中内容
-        year.setOnSelectListener((position, data) -> Log.e("Select Position:", position + "|" + data));
+        year.setOnSelectListener((position, data) -> {
+            Log.e("Select Position:", position + "|" + data);
+            choiceYear = position + 1000;
+        });
 
-        WheelView month = findViewById(R.id.wheel_view2);
+        month = findViewById(R.id.wheel_view2);
         //设置选中文本的样式
         month.setTextSize(16);
         month.setTextColor(Color.BLUE, Color.GRAY);
         //设置内容
         month.setData(getMonthData());
         //默认选中项(要选中的内容 - 起始内容 = position)
-        month.initPosition(3 - 1);
+        month.initPosition(choiceMonth - 1);
         //监听选中内容
-        month.setOnSelectListener((position, data) -> Log.e("Select Position:", position + "|" + data));
+        month.setOnSelectListener((position, data) -> {
+            Log.e("Select Position:", position + "|" + data);
+            choiceMonth = position + 1;
+            day.setData(getDayData(getMaxDay(choiceYear, choiceMonth)));
+        });
+
+        day = findViewById(R.id.wheel_view3);
+        //设置选中文本的样式
+        day.setTextSize(16);
+        day.setTextColor(Color.BLUE, Color.GRAY);
+        //设置内容
+        day.setData(getDayData(getMaxDay(choiceYear, choiceMonth)));
+        //默认选中项(要选中的内容 - 起始内容 = position)
+        day.initPosition(1);
+        //监听选中内容
+        day.setOnSelectListener((position, data) -> Log.e("Select Position:", position + "|" + data));
     }
 
     public List<String> getYearData() {
@@ -59,5 +83,24 @@ public class WheelActivity extends AppCompatActivity {
             }
         }
         return monthData;
+    }
+
+    public static List<String> getDayData(int maxDayOfMonth) {
+        List<String> dayData = new ArrayList<>();
+        for (int i3 = 1; i3 <= maxDayOfMonth; i3++) {
+            if (i3 < 10) {
+                dayData.add("0" + i3 + "日");
+            } else {
+                dayData.add(i3 + "日");
+            }
+        }
+        return dayData;
+    }
+
+    public static int getMaxDay(int choiceYear, int choiceMonth) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.YEAR, choiceYear);
+        calendar.set(Calendar.MONTH, (choiceMonth - 1));
+        return calendar.getActualMaximum(Calendar.DAY_OF_MONTH);
     }
 }

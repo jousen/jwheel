@@ -38,7 +38,7 @@ allprojects {
 
 ```
 dependencies {
-    implementation 'com.github.jousen:jwheel:3.6'
+    implementation 'com.github.jousen:jwheel:3.7'
 }
 ```
 
@@ -80,7 +80,7 @@ dependencies {
 ##### 2、Init in Activity 在代码里初始化
 
 ```
-		WheelView year = findViewById(R.id.wheel_view1);
+        WheelView year = findViewById(R.id.wheel_view1);
         //设置选中文本的样式
         year.setTextSize(16);
         year.setTextColor(Color.BLUE, Color.GRAY);

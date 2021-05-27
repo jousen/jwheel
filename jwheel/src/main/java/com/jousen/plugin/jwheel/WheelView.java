@@ -53,7 +53,7 @@ public class WheelView extends RecyclerView {
                     return;
                 }
                 itemHeight = height / childCount;
-                int padding = height / 2;
+                int padding = (height - itemHeight) / 2 + 1;
                 WheelView.this.setPadding(0, padding, 0, padding);
                 //若有初始选择的item，则滑动过去
                 if (initPosition > 0) {
