@@ -1,5 +1,6 @@
 package com.jousen.plugin.jwheel;
 
+import android.annotation.SuppressLint;
 import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -32,6 +33,7 @@ public class WheelAdapter extends RecyclerView.Adapter<WheelAdapter.VH> {
         this.selectSuffix = selectSuffix;
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     public void setData(List<String> items) {
         this.items = items;
         int size = items.size();
@@ -41,6 +43,7 @@ public class WheelAdapter extends RecyclerView.Adapter<WheelAdapter.VH> {
         notifyDataSetChanged();
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     public String selectPosition(int selectPosition) {
         this.selectPosition = selectPosition;
         notifyDataSetChanged();

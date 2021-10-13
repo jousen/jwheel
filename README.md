@@ -1,23 +1,19 @@
 # jwheel
 
-**Android wheel picker base on RecyclerView.** 
-
 **Android 滚动选择组件，基于RecyclerView**
+
+**Android wheel picker base on RecyclerView.** 
 
 ------
 
-## 1、Feature 特性
+## 1、特性 Feature 
 
-- Support Android 5.0+       Android 5.0以上系统版本支持
-- Support Only AndroidX    只支持 AndroidX
-
-
+- Android 5.0以上系统版本支持 Support Android 5.0+ 
+- 只支持 AndroidX  Support Only AndroidX 
 
 <img src="https://github.com/jousen/jwheel/blob/main/1.png" />
 
-
-
-## 2、Import 依赖
+## 2、依赖 Import 
 
 1、Add the JitPack maven repository to the list of repositories 将JitPack存储库添加到您的构建文件中(项目根目录下build.gradle文件)
 
@@ -38,11 +34,11 @@ allprojects {
 
 ```
 dependencies {
-    implementation 'com.github.jousen:jwheel:3.7'
+    implementation 'com.github.jousen:jwheel:3.8'
 }
 ```
 
-## 3、Usage 使用
+## 3、使用 Usage 
 
 ##### 1、Use in xml 在xml文件定义如下
 
