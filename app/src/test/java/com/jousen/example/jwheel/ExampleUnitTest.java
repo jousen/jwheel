@@ -1,4 +1,4 @@
-package com.jousen.plugin.jwheel;
+package com.jousen.example.jwheel;
 
 import org.junit.Test;
 

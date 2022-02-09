@@ -1,4 +1,4 @@
-package com.jousen.plugin.jwheel;
+package com.jousen.example.jwheel;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,7 +13,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         findViewById(R.id.button).setOnClickListener(v -> {
-            Intent intent = new Intent(this, WheelActivity.class);
+            Intent intent = new Intent(this, com.jousen.example.jwheel.WheelActivity.class);
             startActivity(intent);
         });
     }

@@ -1,10 +1,12 @@
-package com.jousen.plugin.jwheel;
+package com.jousen.example.jwheel;
 
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.jousen.plugin.jwheel.WheelView;
 
 import java.util.ArrayList;
 import java.util.Calendar;
