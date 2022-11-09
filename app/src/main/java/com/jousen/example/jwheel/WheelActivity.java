@@ -45,6 +45,7 @@ public class WheelActivity extends AppCompatActivity {
         year.setOnSelectListener((position, data) -> {
             choiceYear = position + yearStart;
             Log.d("JWheel:", choiceYear + "-" + choiceMonth + "-" + choiceDay);
+            day.setData(getDayData());
         });
 
         month = findViewById(R.id.wheel_view2);
