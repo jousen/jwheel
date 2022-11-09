@@ -13,7 +13,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         findViewById(R.id.button).setOnClickListener(v -> {
-            Intent intent = new Intent(this, com.jousen.example.jwheel.WheelActivity.class);
+            Intent intent = new Intent(this, WheelActivity.class);
             startActivity(intent);
         });
     }

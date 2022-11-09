@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -20,19 +21,40 @@ public class WheelAdapter extends RecyclerView.Adapter<WheelAdapter.VH> {
     private int unSelectColor = Color.GRAY;
     private String selectSuffix = "";
 
+    /**
+     * 设置字体大小 sp
+     *
+     * @param textSize float
+     */
     public void setTextSize(float textSize) {
         this.textSize = textSize;
     }
 
-    public void setTextColor(int selectColor, int unSelectColor) {
+    /**
+     * 设置字体颜色
+     *
+     * @param selectColor   ColorInt
+     * @param unSelectColor ColorInt
+     */
+    public void setTextColor(@ColorInt int selectColor, @ColorInt int unSelectColor) {
         this.selectColor = selectColor;
         this.unSelectColor = unSelectColor;
     }
 
+    /**
+     * 设置item后缀文字
+     *
+     * @param selectSuffix String
+     */
     public void setSelectSuffix(String selectSuffix) {
         this.selectSuffix = selectSuffix;
     }
 
+    /**
+     * 设置数据
+     *
+     * @param items 数据
+     */
     @SuppressLint("NotifyDataSetChanged")
     public void setData(List<String> items) {
         this.items = items;
@@ -43,6 +65,12 @@ public class WheelAdapter extends RecyclerView.Adapter<WheelAdapter.VH> {
         notifyDataSetChanged();
     }
 
+    /**
+     * 设置选中位置
+     *
+     * @param selectPosition int
+     * @return 选中位置item的内容
+     */
     @SuppressLint("NotifyDataSetChanged")
     public String selectPosition(int selectPosition) {
         this.selectPosition = selectPosition;

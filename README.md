@@ -11,7 +11,7 @@
 - Android 5.0以上系统版本支持 Support Android 5.0+ 
 - 只支持 AndroidX  Support Only AndroidX 
 
-<img src="https://github.com/jousen/jwheel/blob/main/1.png" />
+<img src="./1.png" width="400"/>
 
 ## 2、依赖 Import 
 
@@ -34,7 +34,7 @@ allprojects {
 
 ```
 dependencies {
-    implementation 'com.github.jousen:jwheel:4.1'
+    implementation 'com.github.jousen:jwheel:4.2'
 }
 ```
 
@@ -62,6 +62,7 @@ dependencies {
         app:layout_constraintTop_toTopOf="parent" />
         
     <View
+    	android:id="@+id/mask_view"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:layout_margin="10dp"
@@ -78,16 +79,20 @@ dependencies {
 ```
         WheelView year = findViewById(R.id.wheel_view1);
         //设置选中文本的样式
-        year.setTextSize(16);
+        year.setTextSize(18);
         year.setTextColor(Color.BLUE, Color.GRAY);
         //设置内容
         year.setData(getYearData());
         //设置选择文字后缀
         year.setSelectSuffix("年");
         //默认选中项(要选中的内容 - 起始内容 = position)
-        year.initPosition(2021 - 1000);
+        final int yearStart = 2000;
+        year.initPosition(choiceYear - yearStart);
         //监听选中内容
-        year.setOnSelectListener((position, data) -> Log.e("Select Position:", position + "|" + data));
+        year.setOnSelectListener((position, data) -> {
+            choiceYear = position + yearStart;
+            Log.d("JWheel:", choiceYear + "-" + choiceMonth + "-" + choiceDay);
+        });
 ```
 
 
