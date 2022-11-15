@@ -18,8 +18,8 @@ public class WheelActivity extends AppCompatActivity {
     WheelView day;
     int yearStart = 2000;
     int choiceYear = 2022;
-    int choiceMonth = 1;
-    int choiceDay = 1;
+    int choiceMonth = 11;
+    int choiceDay = 15;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
