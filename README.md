@@ -11,8 +11,6 @@
 - Android 5.0以上系统版本支持 Support Android 5.0+ 
 - 只支持 AndroidX  Support Only AndroidX 
 
-<img src="./1.png" width="400"/>
-
 ## 2、依赖 Import 
 
 1、Add the JitPack maven repository to the list of repositories 将JitPack存储库添加到您的构建文件中(项目根目录下build.gradle文件)
@@ -34,9 +32,11 @@ allprojects {
 
 ```
 dependencies {
-    implementation 'com.github.jousen:jwheel:4.3'
+    implementation 'com.github.jousen:jwheel:4.4'
 }
 ```
+
+<img src="./1.png" width="400"/>
 
 ## 3、使用 Usage 
 
