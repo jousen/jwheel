@@ -93,7 +93,7 @@ public class WheelView extends RecyclerView {
     /**
      * 设置选中项监听
      *
-     * @param onSelectListener
+     * @param onSelectListener OnSelectListener
      */
     public void setOnSelectListener(OnSelectListener onSelectListener) {
         this.onSelectListener = onSelectListener;
@@ -102,7 +102,7 @@ public class WheelView extends RecyclerView {
     /**
      * item 字体大小
      *
-     * @param textSize
+     * @param textSize float
      */
     public void setTextSize(float textSize) {
         this.textSize = textSize;
@@ -111,8 +111,8 @@ public class WheelView extends RecyclerView {
     /**
      * item 字体颜色
      *
-     * @param selectColor
-     * @param unSelectColor
+     * @param selectColor int
+     * @param unSelectColor int
      */
     public void setTextColor(int selectColor, int unSelectColor) {
         this.selectColor = selectColor;
@@ -122,7 +122,7 @@ public class WheelView extends RecyclerView {
     /**
      * item 选中项文字后缀
      *
-     * @param selectSuffix
+     * @param selectSuffix String
      */
     public void setSelectSuffix(String selectSuffix) {
         this.selectSuffix = selectSuffix;
@@ -131,7 +131,7 @@ public class WheelView extends RecyclerView {
     /**
      * 设置数据
      *
-     * @param items
+     * @param items List<String>
      */
     @SuppressLint("NotifyDataSetChanged")
     public void setData(List<String> items) {
@@ -148,7 +148,7 @@ public class WheelView extends RecyclerView {
     /**
      * 初始位置
      *
-     * @param position
+     * @param position int
      */
     public void initPosition(int position) {
         if (position < 0) {

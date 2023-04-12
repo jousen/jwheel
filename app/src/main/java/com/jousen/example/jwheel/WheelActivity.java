@@ -18,18 +18,13 @@ public class WheelActivity extends AppCompatActivity {
     WheelView day;
     int yearStart = 2000;
     int choiceYear = 2022;
-    int choiceMonth = 11;
-    int choiceDay = 15;
+    int choiceMonth = 12;
+    int choiceDay = 25;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_wheel);
-        //当前日期
-        Calendar calendar = Calendar.getInstance();
-        choiceYear = calendar.get(Calendar.YEAR);
-        choiceMonth = calendar.get(Calendar.MONTH) + 1;
-        choiceDay = calendar.get(Calendar.DAY_OF_MONTH);
 
         year = findViewById(R.id.wheel_view1);
         //设置选中文本的样式
